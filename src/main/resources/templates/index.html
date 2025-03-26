@@ -3,76 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Home Page</title>
+    <title>Prajwal's Book Haven</title>
     <style>
-        .mask {
-            height: 600px;
-            width: 100vw;
-            background: black;
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --light: #f8f9fa;
+            --dark: #2d3436;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+        
+        .hero-section {
+            height: 90vh;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.9), rgba(162, 155, 254, 0.9)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
             overflow: hidden;
-            background: #C33764;
-            background: -webkit-linear-gradient(rgba(29, 38, 113, 0.8), rgba(195, 55, 100, 0.8)), url("https://bit.ly/38szWHt");
-            background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(195, 55, 100, 0.8)), url("https://bit.ly/38szWHt"); /* The least supported option. */
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+            color: white;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .btn-custom {
+            background-color: var(--accent);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background-color: #ff6b9d;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            color: var(--accent);
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            height: 100%;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+        
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-top: 2rem;
+        }
+        
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+        
+        .wave-divider .shape-fill {
+            fill: #FFFFFF;
         }
     </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 <header>
     <div th:insert="fragments/header :: header"></div>
 
-    <div class="mask rgba-black-strong">
-        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
-            <div class="row d-flex justify-content-center text-center">
-                <div class="col-md-10">
-                    <h2 class="display-4 font-weight-bold text-white pt-5 mb-2">Learning never stops</h2>
-                    <hr class="hr-light">
-                    <h4 class="text-white my-4">Served more than half a million customers till date, with average rating of 4.9+</h4>
-                    <button type="button" class="btn btn-outline-white text-white">Read more <i
-                            class="fa fa-book ml-2"></i>
-                    </button>
-                </div>
-            </div>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Discover Your Next Favorite Book</h1>
+            <p class="hero-subtitle">Curated collection for curious minds. Serving readers with love since 2023.</p>
+            <button class="btn btn-custom text-white">
+                Browse Collection <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <div class="signature">— Prajwal's Selection</div>
+        </div>
+        
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
         </div>
     </div>
-
 </header>
-<main class="mt-5">
-    <div class="container">
-        <section id="best-features" class="text-center">
-            <h2 class="mb-5 font-weight-bold">Best Features</h2>
-            <div class="row d-flex justify-content-center mb-4">
-                <div class="col-md-8">
-                    <p class="grey-text">Ignorance is not innocence but sin. -Robert Browning.</p>
 
-                </div>
-            </div>
+<main class="py-5">
+    <div class="container py-5">
+        <section id="features" class="text-center">
+            <h2 class="section-title mb-5">Why Choose Us</h2>
             <div class="row">
-                <div class="col-md-4 mb-5">
-                    <i class="fa fa-camera-retro fa-4x orange-text"></i>
-                    <h4 class="my-4 font-weight-bold">Experience</h4>
-                    <p class="grey-text">Experienced staff with years of experience</p>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4 class="mb-3">Expert Curation</h4>
+                        <p class="text-muted">Each title is hand-picked by our team of bibliophiles to ensure quality and relevance.</p>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-1">
-                    <i class="fa fa-heart fa-4x orange-text"></i>
-                    <h4 class="my-4 font-weight-bold">Quality</h4>
-                    <p class="grey-text">High quality books to serve your purpose</p>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4 class="mb-3">Premium Quality</h4>
+                        <p class="text-muted">We source only the finest editions, with careful attention to binding, paper, and print quality.</p>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-1">
-                    <i class="fa fa-bicycle fa-4x orange-text"></i>
-                    <h4 class="my-4 font-weight-bold">Seamless</h4>
-                    <p class="grey-text">Seamless and hassle free process to help you with ease</p>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4 class="mb-3">Lightning Fast</h4>
+                        <p class="text-muted">Get your books delivered with our express shipping or enjoy instant access to our digital collection.</p>
+                    </div>
                 </div>
             </div>
-
         </section>
     </div>
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
