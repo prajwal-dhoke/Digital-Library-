@@ -60,10 +60,8 @@ flowchart LR
    ```
 
 2. **Access interfaces:**  
-   - Web UI: `http://localhost:8080`  
-   - H2 Console: `http://localhost:8080/h2-console` (JDBC URL: `jdbc:h2:mem:libdb`)  
-   - Swagger: `http://localhost:8080/swagger-ui.html`  
-
+   - Web UI: https://digital-library-ejb0.onrender.com
+     
 ### **Production Deployment (Render.com)**  
 
 1. **Required files:**  
