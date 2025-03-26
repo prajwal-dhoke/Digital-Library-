@@ -1,11 +1,7 @@
-Here's a refined and professional version of your **Digital Library Book Management System** documentation with corrections and improvements:
-
----
-
 # Digital Library Book Management System  
 
 ## **Project Overview**  
-A Spring Boot-based system for librarians to manage book catalogs with full CRUD operations via both web interface and REST API.  
+A Spring Boot-based system for librarians to manage book catalogs with full CRUD operations via web interface and REST API.  
 
 ---
 
