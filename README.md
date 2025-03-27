@@ -1,73 +1,135 @@
-# Digital Library Book Management System
+# Digital Library Book Management System  
 
-## Objective
-The Digital Library Book Management System is designed to enable librarians to efficiently manage a collection of books. This system allows users to add, update, search, and remove books while maintaining their availability status.
+## **Project Overview**  
+A Spring Boot-based system for librarians to manage book catalogs with full CRUD operations via web interface and REST API.  
 
-## Features
-- **Add a Book**: Enter book details including ID, title, author, genre, and availability status.
-- **View All Books**: Display a list of all books with their details.
-- **Search Book by ID or Title**: Find books using either their ID or title.
-- **Update Book Details**: Modify book information such as title, author, genre, or availability status.
-- **Delete a Book Record**: Remove a book from the catalog.
-- **RESTful API Integration**: Supports API endpoints for managing books.
+---
 
-## Technologies Used
-- **Backend**: Spring Boot (Java)
-- **Database**: H2 (In-Memory Database)
-- **Frontend**: HTML, CSS, Bootstrap
-- **API Format**: RESTful API (Spring Boot REST Controller)
+## **Key Features**  
 
-## Installation & Setup
-### Prerequisites
-Ensure you have the following installed:
-- Java 17+
-- Maven
-- Git
-- Any IDE (IntelliJ, VS Code, Eclipse, etc.)
+| Feature                | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| **Book Management**    | Add, view, update, and delete books with details (ID, title, author, genre, availability) |
+| **Search Functionality** | Search by book ID or title (exact match & partial search)                  |
+| **REST API**           | Fully documented endpoints for integration with other systems               |
+| **Real-time Updates**  | Immediate reflection of changes across UI and API                          |
 
-### Steps to Run Locally
-1. **Clone the Repository**
-   ```sh
-   git clone https://github.com/your-username/digital-library-management.git
-   cd digital-library-management
-   ```
-2. **Build the Project**
-   ```sh
-   mvn clean install
-   ```
-3. **Run the Application**
-   ```sh
+---
+
+## **Technology Stack**  
+
+| Component       | Technology                                                                 |
+|-----------------|---------------------------------------------------------------------------|
+| **Backend**     | Spring Boot 3.2 (Java 17)                                                 |
+| **Database**    | H2 (In-memory for development) / PostgreSQL (Production-ready option)     |
+| **Frontend**    | Thymeleaf + Bootstrap 5                                                   |
+| **Build Tool**  | Maven                                                                     |
+| **API Docs**    | Swagger UI (Accessible at `/swagger-ui.html`)                             |
+
+---
+
+## **System Architecture**  
+```mermaid
+flowchart LR
+    A[Web Browser] --> B[Spring Boot Controllers]
+    B --> C[Service Layer]
+    C --> D[H2 Database]
+    B --> E[Thymeleaf Templates]
+```
+
+---
+
+## **Setup & Deployment**  
+
+### **Prerequisites**  
+- JDK 17+  
+- Maven 3.9+  
+- Git  
+
+### **Local Development**  
+
+1. **Clone and run:**  
+   ```bash
+   git clone https://github.com/prajwal-dhoke/Digital-Library.git
+   cd Digital-Library
    mvn spring-boot:run
    ```
-4. **Access the Application**
-   - **Frontend**: Open `http://localhost:8080` in a browser.
-   - **API Endpoints**: Use Postman or a browser to test APIs.
 
-### API Endpoints
-| HTTP Method | Endpoint        | Description            |
-|------------|----------------|------------------------|
-| GET        | /books         | Fetch all books       |
-| GET        | /books/{id}    | Fetch book by ID      |
-| POST       | /books         | Add a new book        |
-| PUT        | /books/{id}    | Update book details   |
-| DELETE     | /books/{id}    | Delete a book         |
+2. **Access interfaces:**  
+   - Web UI: https://digital-library-ejb0.onrender.com
+     
+### **Production Deployment (Render.com)**  
 
-## Deployment
-The project is deployed on **[Heroku/Render/Railway]** and can be accessed at:  
-[Deployment Link](https://your-deployment-url.com)
+1. **Required files:**  
+   - `Dockerfile` (for containerization)  
+   - `render.yaml` (for deployment config)  
 
-## Challenges Faced
-- Implementing efficient search functionality.
-- Ensuring API responses are properly structured.
-- Integrating H2 database with Spring Boot for seamless data handling.
+2. **Deployment steps:**  
+   ```yaml
+   # render.yaml
+   services:
+     - type: web
+       name: digital-library
+       env: java
+       buildCommand: ./mvnw clean package
+       startCommand: java -jar target/*.jar
+       disk:
+         name: data
+         mountPath: /data
+   ```
 
-## Future Improvements
-- Implement role-based access control.
-- Add authentication and authorization features.
-- Improve UI/UX for better user experience.
+---
 
-## Contributing
-Feel free to fork this repository and contribute to the project.
+## **API Documentation**  
 
+### **Base URL**  
+`https://your-render-url.onrender.com/api/v1`  
 
+| Endpoint         | Method | Description                          | Sample Request Body                 |
+|------------------|--------|--------------------------------------|-------------------------------------|
+| `/books`         | GET    | Get all books                        | -                                   |
+| `/books/{id}`    | GET    | Get book by ID                       | -                                   |
+| `/books/search`  | GET    | Search by title (`?title=query`)     | -                                   |
+| `/books`         | POST   | Add new book                         | `{"title":"...","author":"..."}`    |
+| `/books/{id}`    | PUT    | Update book                          | `{"genre":"Updated Genre"}`         |
+| `/books/{id}`    | DELETE | Remove book                          | -                                   |
 
+---
+
+## **Production Considerations**  
+
+1. **Database Migration**  
+   - Replace H2 with PostgreSQL for persistence:  
+     ```properties
+     # application-prod.properties
+     spring.datasource.url=${DATABASE_URL}
+     spring.jpa.hibernate.ddl-auto=update
+     ```
+
+2. **Security Enhancements**  
+   - Add Spring Security for authentication  
+   - Disable H2 console in production  
+
+---
+
+## **Roadmap & Improvements**  
+
+- [ ] User authentication (Librarian vs. Patron roles)  
+- [ ] Book reservation system  
+- [ ] Advanced search filters (by author/genre/availability)  
+- [ ] Export catalog to PDF/Excel  
+
+---
+
+**Live Demo**: [https://digital-library-ejb0.onrender.com](https://digital-library-ejb0.onrender.com)  
+
+---
+
+### **Key Improvements from Your Original**:  
+1. **Structured** technical documentation with clear sections  
+2. **Added visual architecture** (Mermaid diagram)  
+3. **Detailed API specs** with sample requests  
+4. **Production-ready** configuration examples  
+5. **Removed redundant** installation steps  
+6. **Added Swagger** for API documentation  
+7. **Clearer deployment** instructions  
